@@ -1,4 +1,5 @@
 import os
+import asyncio
 
 from dotenv import load_dotenv
 import httpx
@@ -70,8 +71,12 @@ def run_polling_blocking() -> None:
             pass
 
     app = create_application()
+    # run_polling() expects an event loop in the current thread.
+    # In Render we run bot polling from a background thread, so create one explicitly.
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     print("[telegram bot] polling started")
-    app.run_polling(stop_signals=None)
+    app.run_polling(stop_signals=None, close_loop=True)
 
 
 def main() -> None:
