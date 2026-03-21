@@ -29,7 +29,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         [
             [
                 InlineKeyboardButton(
-                    text="Open Mini App",
+                    text="Открыть мини-приложение",
                     web_app=WebAppInfo(url=MINIAPP_URL),
                 )
             ]
@@ -37,7 +37,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     )
 
     await update.effective_chat.send_message(
-        "Welcome! Tap the button below to open the Mini App and book an appointment.",
+        "Добро пожаловать! Нажмите кнопку ниже, чтобы открыть мини-приложение и записаться.",
         reply_markup=keyboard,
     )
 

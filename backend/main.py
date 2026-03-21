@@ -282,7 +282,7 @@ def create_booking(payload: BookingCreate):
     if booking.tg_user_id:
         _send_telegram_message(
             booking.tg_user_id,
-            f"Booking confirmed ✅\nDate: {booking.date.strftime('%d.%m.%Y')}\nTime: {booking.time_range}",
+            f"Запись подтверждена ✅\nДата: {booking.date.strftime('%d.%m.%Y')}\nВремя: {booking.time_range}",
         )
     return booking
 
@@ -343,7 +343,7 @@ def cancel_booking(booking_id: int, phone: Optional[str] = None):
         d = datetime.fromisoformat(existing["booking_date"]).date()
         _send_telegram_message(
             tg_user_id,
-            f"Booking canceled ❌\nDate: {d.strftime('%d.%m.%Y')}\nTime: {existing['time_range']}",
+            f"Запись отменена ❌\nДата: {d.strftime('%d.%m.%Y')}\nВремя: {existing['time_range']}",
         )
     return {"status": "ok"}
 
